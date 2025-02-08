@@ -84,7 +84,6 @@ export const AdminSessionProvider = ({ children }) => {
   const updateAdminSession = async () => {
     try {
       const sessionData = await getAdminSessionData();
-      console.log("Session", sessionData)
       setAdminSession({
         userData: sessionData ? {
           id: sessionData.id,

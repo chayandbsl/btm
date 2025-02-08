@@ -34,7 +34,7 @@ export default function Home() {
 
           <div className="flex flex-col items-center hover:scale-105 transition-transform duration-300">
             <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-teal-100 flex items-center justify-center">
-            <Link href="/teams/create" className="block">
+            <Link href="/teams" className="block">
               <img
                 src="/images/team-1.png"
                 alt="Teams"

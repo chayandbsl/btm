@@ -7,7 +7,6 @@ export async function getCurrentSession(userType) {
       userType === "admin"
         ? await getAdminSession()
         : await getEmployeeSession();
-    console.log("session-in-utils", session);
 
     if (!session) return null;
 
