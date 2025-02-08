@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model activities {
+  id                    Int      @id @default(autoincrement())
+  team_id               Int
+  date                  DateTime @db.Date
+  day_name              String   @default("0") @db.VarChar(15)
+  fajr                  Int      @default(0)
+  dhuhr                 Int      @default(0)
+  asr                   Int      @default(0)
+  maghrib               Int      @default(0)
+  isha                  Int      @default(0)
+  sura_mulk             Int      @default(0)
+  exercise              Int      @default(0)
+  deen_lecture          Int      @default(0)
+  motivational_lecture  Int      @default(0)
+  intensive_dhikr_night Int      @default(0)
+  call_parents          Int      @default(0)
+  quran                 Int      @default(0)
+  tasbeeh               Int      @default(0)
+  miswak                Int      @default(0)
+  dua                   Int      @default(0)
+}
+
+model team {
+  id                Int       @id @default(autoincrement())
+  name              String    @db.VarChar(200)
+  mobile            String    @unique(map: "mobile") @db.VarChar(15)
+  email             String    @unique(map: "email") @db.VarChar(150)
+  reference         Int       @default(0)
+  parent            String    @db.Text
+  present_address   String    @default("") @db.VarChar(300)
+  permanent_address String    @default("") @db.VarChar(300)
+  password          String    @db.VarChar(250)
+  status            Int       @default(1)
+  created_at        DateTime  @db.DateTime(0)
+  created_by        Int       @default(0)
+  updated_at        DateTime? @db.DateTime(0)
+  updated_by        Int       @default(0)
+
+  @@index([status], map: "status")
+}
+
+model users {
+  id                Int       @id @default(autoincrement())
+  name              String    @db.VarChar(200)
+  mobile            String    @unique(map: "mobile") @db.VarChar(15)
+  email             String    @unique(map: "email") @db.VarChar(150)
+  present_address   String    @default("") @db.VarChar(300)
+  permanent_address String    @default("") @db.VarChar(300)
+  password          String    @db.VarChar(250)
+  status            Int       @default(1)
+  created_at        DateTime  @db.DateTime(0)
+  created_by        Int       @default(0)
+  updated_at        DateTime? @db.DateTime(0)
+  updated_by        Int       @default(0)
+
+  @@index([status], map: "status")
+}

@@ -1,0 +1,26 @@
+"use client";
+
+import { createContext, useContext, useState } from "react";
+
+// Create a context with a default value of `null`
+const SidebarContext = createContext(null);
+
+export const SidebarProvider = ({ children }) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
+
+  return (
+    <SidebarContext.Provider value={{ isSidebarOpen, toggleSidebar }}>
+      {children}
+    </SidebarContext.Provider>
+  );
+};
+
+export const useSidebar = () => {
+  const context = useContext(SidebarContext);
+  if (!context) {
+    throw new Error("useSidebar must be used within a SidebarProvider");
+  }
+  return context;
+};
